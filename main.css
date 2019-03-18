@@ -1,0 +1,24 @@
+/* MAIN CSS FILE FOR PROJECT */
+
+main {
+  margin: auto;
+  width: 800px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14pt;
+}
+
+svg {
+  display:block;
+}
+
+.line {
+  fill: none;
+  stroke: red;
+  stroke-width: 2px;
+} 
+
+.area {
+  fill: red;
+  stroke: red;
+  stroke-width: 2px;
+} 
