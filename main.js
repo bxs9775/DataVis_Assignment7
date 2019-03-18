@@ -78,7 +78,7 @@ function createLineChart() {
   console.dir(dataset);
   console.dir(dataset.map(d => d.lineData),(d) => d.name);
   
-  let path = svg.selectAll("path")
+  let path = svg.selectAll(".line")
     .data(dataset.map(d => d.lineData))
     .enter()
     .append("path")
