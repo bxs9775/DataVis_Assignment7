@@ -43,7 +43,7 @@ function createLineChart() {
 
   let xScale = d3
     .scaleTime()
-    .domain(            )    /// FIXME
+    .domain(d3.extent(d3.values(dataset[0],(d) => d.lineData.date)))
     .range([30, w - 20]);
 
   // create our x-axis and customize look with .ticks() and
@@ -67,7 +67,24 @@ function createLineChart() {
   // draw the lines using SVG path elements
   // You must use only one .selectAll(), .data(), .enter() sequence
   // here to generate all of your lines
-
+  let lines = (d) => {
+    console.log("Line data:");
+    console.dir(d);
+    let line = d3.line()
+      .x(d => xScale(d.date))
+      .y(d => yScale(d.sleep));
+    console.log("Line:");
+    console.dir(line);
+    console.log(line);
+    return line;
+  };
+  
+  svg.selectAll("path")
+    .data(dataset)
+    .enter()
+    .append("path")
+    .attr("class","line")
+    .attr("d",(d) => lines(d.lineData));
 }
 
 
