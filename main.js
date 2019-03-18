@@ -72,14 +72,16 @@ function createLineChart() {
     .y(d => yScale(d.sleep));
   
   console.dir(dataset);
-  console.dir(dataset.map(d => d.lineData));
+  console.dir(dataset.map(d => d.lineData),(d) => d.name);
   
-  svg.selectAll("path")
+  let path = svg.selectAll("path")
     .data(dataset.map(d => d.lineData))
     .enter()
     .append("path")
     .attr("class","line")
     .attr("d",line);
+  
+  console.dir(path);
 }
 
 
