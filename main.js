@@ -28,6 +28,18 @@ for(let i = 0; i < 3; i++) {
 let w = 600;
 let h = 500;
 
+function createLine(data) {
+  console.log("Line data:");
+  console.dir(data);
+  let line = d3.line()
+    .x(d => xScale(data.date))
+    .y(d => yScale(data.sleep));
+  console.log("Line:");
+  console.dir(line);
+  console.log(line);
+  return line;
+}
+
 function createLineChart() {
   // create our SVG element
   let svg = d3
@@ -67,24 +79,16 @@ function createLineChart() {
   // draw the lines using SVG path elements
   // You must use only one .selectAll(), .data(), .enter() sequence
   // here to generate all of your lines
-  let lines = (d) => {
-    console.log("Line data:");
-    console.dir(d);
-    let line = d3.line()
-      .x(d => xScale(d.date))
-      .y(d => yScale(d.sleep));
-    console.log("Line:");
-    console.dir(line);
-    console.log(line);
-    return line;
-  };
-  
+  let lines = [];
+  for(var i = 0; i < dataset.length; i++){
+    lines.push(createLine(dataset[i].lineData));
+  }
   svg.selectAll("path")
     .data(dataset)
     .enter()
     .append("path")
     .attr("class","line")
-    .attr("d",(d) => lines(d.lineData));
+    .attr("d",(d,i) => lines[i]);
 }
 
 
