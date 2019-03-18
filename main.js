@@ -9,7 +9,7 @@
 
 let dataset = [];
 
-let colors = ["red","green","blue"];
+let colors = ["#1b9e77","#d95f02","#7570b3"];
 
 for(let i = 0; i < 3; i++) {
   let lineData = []
@@ -82,7 +82,7 @@ function createLineChart() {
     .append("path")
     .attr("class","line")
     .attr("d",line)
-    .attr("color",(d,i) => colors[i]);
+    .style("stroke",(d,i) => colors[i]);
   
   console.dir(path);
 }
