@@ -52,7 +52,8 @@ function createLineChart() {
   // .tickFormat()
   let xAxis = d3
     .axisBottom(xScale)
-    .tickFormat(d3.timeFormat("%m/%y"));
+    .tickFormat(d3.timeFormat("%m/%y"))
+    .ticks(dataset[0].lineData.length);
   let xAxisGroup = svg
     .append("g")
     .attr("transform", `translate(0, ${h - 20})`)
