@@ -67,9 +67,13 @@ function createLineChart() {
   // draw the lines using SVG path elements
   // You must use only one .selectAll(), .data(), .enter() sequence
   // here to generate all of your lines
-  let line = d3.line()
-    .x(d => xScale(d.date))
-    .y(d => yScale(d.sleep));
+  let lines = [];
+  for(var i = 0; i < dataset.length; i++){
+    let line = d3.line()
+      .x(d => xScale(d.date))
+      .y(d => yScale(d.sleep));
+    lines.push(line);
+  }
   
   console.dir(dataset);
   console.dir(dataset.map(d => d.lineData),(d) => d.name);
@@ -79,7 +83,7 @@ function createLineChart() {
     .enter()
     .append("path")
     .attr("class","line")
-    .attr("d",line);
+    .attr("d",(d,i) => lines[i](d));
   
   console.dir(path);
 }
