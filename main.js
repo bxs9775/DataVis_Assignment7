@@ -43,7 +43,7 @@ function createLineChart() {
 
   let xScale = d3
     .scaleTime()
-    .domain(d3.extent(d3.values(dataset[0].lineData,(d) => d.date)))
+    .domain(d3.extent(dataset[0].lineData.map((d) => d.date)))
     .range([30, w - 20]);
 
   // create our x-axis and customize look with .ticks() and
@@ -70,6 +70,8 @@ function createLineChart() {
   let line = d3.line()
     .x(d => xScale(d.date))
     .y(d => yScale(d.sleep));
+  
+  console.dir(dataset);
   
   svg.selectAll("path")
     .data(dataset)
