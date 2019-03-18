@@ -7,7 +7,9 @@
  * - change color of lines (you could use .style() with 'stroke')
  */
 
-let dataset = []
+let dataset = [];
+
+let colors = ["red","green","blue"];
 
 for(let i = 0; i < 3; i++) {
   let lineData = []
@@ -79,7 +81,8 @@ function createLineChart() {
     .enter()
     .append("path")
     .attr("class","line")
-    .attr("d",line);
+    .attr("d",line)
+    .attr("color",(d,i) => colors[i]);
   
   console.dir(path);
 }
